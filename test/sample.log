@@ -1,17 +1,17 @@
-{"name":"index","hostname":"Lenovo-PC","pid":7764,"level":30,"msg":"------------------------------","time":"2017-10-25T16:27:00.307Z","v":0}
+{"name":"index","hostname":"Lenovo-PC","pid":7764,"level":30,"msg":"------------------------------","time":"2017-10-25T16:27:00.307Z"}
 {"name":"index","hostname":"Lenovo-PC","pid":5572,"level":20,"locals":{"flash":"請先登入"},"msg":"Print locals","time":"2017-10-26T10:33:56.468Z","v":0}
-{"name":"index","hostname":"Lenovo-PC","pid":7764,"level":30,"msg":"Express server started in development on port 3002. baseurl=undefined","time":"2017-10-25T16:27:00.307Z","v":0}
-{"name":"index","hostname":"Lenovo-PC","pid":7764,"level":30,"msg":"伺服器已啟動","time":"2017-10-25T16:27:00.308Z","v":0}
+{"name":"","hostname":"Lenovo-PC","pid":7764,"level":30,"msg":"Express server started in development on port 3002. baseurl=undefined","time":"2017-10-25T16:27:00.307Z","v":0}
+{"hostname":"Lenovo-PC","pid":7764,"level":30,"msg":"伺服器已啟動","time":"2017-10-25T16:27:00.308Z","v":0}
 {"name":"connector","hostname":"Lenovo-PC","pid":7764,"level":30,"msg":"[mongoose] Mongodb is opened","time":"2017-10-25T16:27:01.646Z","v":0}
 {"name":"connector","hostname":"Lenovo-PC","pid":7764,"level":50,"msg":"[error] mongoose connection does not exist.","time":"2017-10-25T16:27:03.646Z","v":0}
-{"name":"index","hostname":"Lenovo-PC","pid":7764,"level":20,"locals":{"uid":"google:114882808303272210770","displayName":"Roy Xenon#g","flash":"成功登入"},"msg":"Print locals","time":"2017-10-25T16:27:36.069Z","v":0}
-{"name":"index","hostname":"Lenovo-PC","pid":7764,"level":20,"locals":{"uid":"google:114882808303272210770","displayName":"Roy Hiv#g","flash":"更新成功囉"},"msg":"Print locals","time":"2017-10-25T16:27:54.726Z","v":0}
+{"name":"index","hostname":"Lenovo-PC","pid":7764,"level":20,"locals":{"uid":"test:6023","displayName":"Roy","flash":"成功登入"},"msg":"Print locals","time":"2017-10-25T16:27:36.069Z","v":0}
+{"name":"index","hostname":"Lenovo-PC","pid":7764,"level":20,"locals":{"uid":"test:6023","displayName":"All new Roy","flash":"更新成功囉"},"msg":"Print locals","time":"2017-10-25T16:27:54.726Z","v":0}
 {"name":"index","hostname":"Lenovo-PC","pid":7764,"level":20,"locals":{"flash":"您已成功登出，歡迎再來。"},"msg":"Print locals","time":"2017-10-25T16:28:12.914Z","v":0}
 {"name":"index","hostname":"Lenovo-PC","pid":5480,"level":30,"msg":"------------------------------","time":"2017-10-25T17:41:09.499Z","v":0}
 {"name":"index","hostname":"Lenovo-PC","pid":5480,"level":30,"msg":"Express server started in development on port 3012. baseurl=undefined","time":"2017-10-25T17:41:09.499Z","v":0}
 {"name":"index","hostname":"Lenovo-PC","pid":5480,"level":30,"msg":"伺服器已啟動","time":"2017-10-25T17:41:09.499Z","v":0}
 {"name":"connector","hostname":"Lenovo-PC","pid":5480,"level":30,"msg":"[mongoose] Mongodb is opened","time":"2017-10-25T17:41:10.544Z","v":0}
-{"name":"index","hostname":"Lenovo-PC","pid":5480,"level":20,"locals":{"uid":"google:114882808303272210770","displayName":"Roy Hiv#g","flash":"成功登入"},"msg":"Print locals","time":"2017-10-25T18:10:14.059Z","v":0}
+{"name":"index","hostname":"Lenovo-PC","pid":5480,"level":20,"locals":{"uid":"test:6023","displayName":"Roy mk2","flash":"成功登入"},"msg":"Print locals","time":"2017-10-25T18:10:14.059Z","v":0}
 {"name":"index","hostname":"Lenovo-PC","pid":8428,"level":30,"msg":"------------------------------","time":"2017-10-25T19:49:52.043Z","v":0}
 {"name":"index","hostname":"Lenovo-PC","pid":8428,"level":30,"msg":"Express server started in development on port 3002. baseurl=undefined","time":"2017-10-25T19:49:52.043Z","v":0}
 {"name":"index","hostname":"Lenovo-PC","pid":8428,"level":30,"msg":"伺服器已啟動","time":"2017-10-25T19:49:52.043Z","v":0}

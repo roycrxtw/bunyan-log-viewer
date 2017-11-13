@@ -1,10 +1,11 @@
 {
   "name": "bunyan-log-viewer",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "license": "MIT",
   "homepage": "https://github.com/royvbtw/bunyan-log-viewer",
   "dependencies": {
+    "gh-pages": "^1.0.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-scripts": "1.0.17"

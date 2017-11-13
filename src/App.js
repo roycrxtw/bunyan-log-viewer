@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
-let pageSize = 100;
+let pageSize = 50;
 let rawRecords = null;
 
 const Navi = (props) => {
@@ -218,114 +218,93 @@ class App extends Component {
     this.setState({currentPage: newPage});
   };
 
-  prevPageHandler = () => {
-    
-  };
-
-  bunyanRecords = (props) => {
-    return this.printRecords();
-  };
-
   printRecords = () => {
     const { records, currentPage } = this.state;
     if(!records) return;
   
     let items = [];
     for(let i = (currentPage - 1) * pageSize; i < records.length && i < currentPage * pageSize ; i++){
-      items.push(<li key={i}>{this.printEntity(records[i])}</li>);
+      items.push(<li key={i}>{this.printRecord(records[i])}</li>);
     }
     return <ul>{items}</ul>;
   };
 
-  printEntity = (entity) => {
-    const r = Object.keys(entity).map( (key, i) => {
-      if(key === 'name'){
-        return (
-          <div className='entity' id='nameEntity' key={i}>
-            <span className='entity-title name'>{key}</span>
-            <span className='entity-content'>{entity[key]}</span>
-          </div>
-        );
-      }else if(key === 'level'){
-        return (
-          <div className='entity' id='levelEntity' key={i}>
-            <span className='entity-title level'>{key}</span>
-            <span className='entity-content'>{entity[key]}</span>
-          </div>
-        );
-      }else if(key === 'time'){
-        return (
-          <div className='entity' id='timeEntity' key={i}>
-            <span className='entity-title time'>{key}</span>
-            <span className='entity-content'>{entity[key]}</span>
-          </div>
-        );
-      }else if(key === 'pid'){
-        return (
-          <div className='entity' id='pidEntity' key={i}>
-            <span className='entity-title pid'>{key}</span>
-            <span className='entity-content'>{entity[key]}</span>
-          </div>
-        );
-      }else if(key === 'hostname'){
-        return (
-          <div className='entity' id='hostnameEntity' key={i}>
-            <span className='entity-title hostname'>{key}</span>
-            <span className='entity-content'>{entity[key]}</span>
-          </div>
-        );
-      }else if(key === 'v'){
-          // do nothing
-          return null;
-      }else{
-        return (
-          <div className='entity' id='otherEntity' key={i}>
-            <span className='entity-title other'>{key}</span>
-            <span className='entity-content'>{JSON.stringify(entity[key])}</span>
-          </div>
-        );
-      }
-    });
-    return r;
+  printRecord = (entity) => {
+    function otherRecords(){
+      const otherRecords = [];
+      Object.keys(entity).forEach( (key, i) => {
+        if(key !== 'name' && key !== 'level' && key !== 'hostname' 
+          && key !== 'time' && key !== 'pid' && key !== 'v'
+        ){
+          otherRecords.push(
+            <div className='other-entity' id='otherEntity' key={i}>
+              <span className='other-entity-title'>{key}</span>
+              <span className='other-entity-content'>{(entity[key])}</span>
+            </div>
+          );
+        }
+      });
+      return otherRecords;
+    }
+
+    return (
+      <div className='record'>
+        <table className='record-table'>
+          <tbody>
+            <tr>
+              <td className='data-title'>Name</td>
+              <td className='data-title'>Time</td>
+              <td className='data-title'>Level</td>
+              <td className='data-title'>Hostname</td>
+              <td className='data-title'>PID</td>
+              <td className='data-title'>v</td>
+            </tr>
+            <tr>
+              <td className='data-value'>{entity.name}</td>
+              <td className='data-value'>{entity.time}</td>
+              <td className='data-value'>{entity.level}</td>
+              <td className='data-value'>{entity.hostname}</td>
+              <td className='data-value'>{entity.pid}</td>
+              <td className='data-value'>{entity.v}</td>
+            </tr>
+          </tbody>
+        </table>
+        {otherRecords()}
+      </div>
+    );
   };
 
   reset = () => {
     this.resetFilter(this.search);
-    // this.setState({
-    //   keyword: '',
-    //   date: 0,
-    //   level: 30,
-    // }, () => this.search());
   };
 
   render() {
     const { level, keyword } = this.state;
 
     return (
-      <div className="App">
+      <div>
         <header>
           Bunyan Log Viewer
         </header>
 
         <div className="menu">
           <div className='menu-file-picker'>
-            <input type='file' className='field file-picker' onChange={this.fileHandler} />
+            <input type='file' className='filter file-picker' onChange={this.fileHandler} />
           </div>
 
           <div className='menu-item'>
             <label className='filter-title'>Filters</label>
           </div>
 
-
           <div className='menu-item'>
             <div className='filter-title'>date</div>
-            <input type='date' className='field time-filter' onChange={this.dateFilter}/>
+            <input type='date' className='filter time-filter' onChange={this.dateFilter}/>
           </div>
           
           <div className='menu-item'>
             <div className='filter-title'>level</div>
-            <input type='text' className='field level-filter' value={level} onChange={this.levelFilter} />
-            <select className='field level-list' value={level} onChange={this.listHandler}>
+            <input type='text' className='filter level-filter' value={level} onChange={this.levelFilter} />
+            <select className='filter level-list' value={level} onChange={this.listHandler}>
               <option value='0'>custom</option> 
               <option value='60'>fatal</option>
               <option value='50'>error</option>
@@ -337,7 +316,8 @@ class App extends Component {
           </div>
           
           <div className='menu-item'>
-            <input type='text' className='filter keyword-field' value={keyword} onChange={this.searchHandler} placeholder='search'/>
+            <input type='text' className='filter keyword-field' value={keyword} 
+              onChange={this.searchHandler} placeholder='search' />
           </div>
 
           <button className='btnReset' onClick={this.reset}>RESET</button>
@@ -353,7 +333,7 @@ class App extends Component {
               recordCount={this.state.records.length}
             />
           )}
-          {this.bunyanRecords()}
+          {this.printRecords()}
         </div>
 
         <footer>

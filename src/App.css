@@ -19,8 +19,8 @@ body{
 
 header{
   margin: 0;
-  background-color: #222;
-  padding: 5px;
+  background-color: #800040;
+  padding-left: 20px;
   color: snow;
   font-size: x-large;
 }
@@ -35,7 +35,6 @@ button{
 }
 
 footer{
-
   background-color: #222;
   padding: 20px;
   color: lightgrey;
@@ -43,10 +42,11 @@ footer{
 }
 
 .menu{
+  width: 100vw;
   margin: 0px;
-  border: 0px solid red;
-  background-color: #222;
-  padding: 10px 10px 10px 30px;
+  border: 0px solid snow;
+  background-color: #800040;
+  padding: 10px 10px 10px 20px;
   color: snow;
 }
 @media (min-width: 720px){
@@ -58,7 +58,6 @@ footer{
 .menu-item{
   display: block;
   margin: 5px;
-  border: 0px solid red;
   padding: 0;
 }
 @media (min-width: 720px){
@@ -70,17 +69,17 @@ footer{
 .menu-file-picker{
   display: block;
   margin: 5px;
-  border: 0px solid red;
   padding: 0;
-}
-@media (min-width: 720px){
-  .menu-file-picker{
-    margin: 5px;
-  }
 }
 
 .file-picker{
+  width: 80vw;
   cursor: pointer;
+}
+@media (min-width: 720px){
+  .file-picker{
+    width: 400px;
+  }
 }
 
 ul{
@@ -95,54 +94,44 @@ li{
   border-bottom: 1px solid darkgrey;
 }
 
-label{
-  display: inline-block;
-  margin: 10px;
-  border-left: 1px solid wheat;
-  border-right: 1px solid wheat;
-  padding: 10px;
-  font-size: 16px;
-}
-
 .navi-block{
   display: block;
   margin: 5px auto;
   text-align: center;
 }
 
+.naviButton{
+  margin: 5px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  background-color: snow;
+  padding: 5px;
+  color: grey;
+  transition: all 700ms;
+}
+.naviButton[disabled]{
+  opacity: 0;
+  cursor: default;
+}
+.naviButton:hover{
+  border: 1px solid grey;
+  background-color: orangered;
+  color: snow;
+}
+
 .filter-title{
   display: inline-block;
   margin: 5px 0 5px 0px;
-  border: 1px solid darkslategrey;
+  border: 1px solid grey;
   padding: 15px;
   cursor: default;
-}
-
-
-.field{
-  margin: 5px 0;
-  border: 0;
-  border-bottom: 1px solid darkslategrey;
-  background-color: #222;
-  padding: 15px;
-  color: snow;
-  font-family: "Microsoft JhengHei";
-  font-size: 16px;
-  transition: all 700ms;
-}
-.field:hover{
-  border-bottom: 1px solid wheat;
-}
-.field:focus{
-  outline: none;
-  border-bottom: 1px solid wheat;
 }
 
 .filter{
   margin: 5px 0;
   border: 0;
-  border-bottom: 1px solid darkslategrey;
-  background-color: #222;
+  border-bottom: 1px solid grey;
+  background-color: #800040;
   padding: 15px;
   color: snow;
   font-family: "Microsoft JhengHei";
@@ -150,6 +139,10 @@ label{
   transition: all 700ms;
 }
 .filter:hover{
+  border-bottom: 1px solid wheat;
+}
+.filter:focus{
+  outline: none;
   border-bottom: 1px solid wheat;
 }
 
@@ -173,6 +166,15 @@ label{
   outline: none;
   border-bottom: 1px solid wheat;
 }
+.keyword-field::-webkit-input-placeholder{
+  color: antiquewhite;
+}
+.keyword-field::-moz-placeholder { /* Firefox 19+ */
+  color: antiquewhite;
+}
+.keyword-field:-ms-input-placeholder { /* IE 10+ */
+  color: antiquewhite;
+}
 @media (min-width: 720px){
   .keyword-field{
     display: block;
@@ -184,11 +186,11 @@ label{
 }
 
 .btnReset{
-  display: block;
+  display: inline-block;
   outline: none;
   margin: 5px auto;
-  border: 1px solid darkslategrey;
-  background-color: #222;
+  border: 1px solid grey;
+  background-color: #800040;
   padding: 5px;
   color: lightgrey;
   transition: all 700ms;
@@ -203,69 +205,38 @@ label{
   }
 }
 
-.naviButton{
-  margin: 5px;
-  border: 1px solid grey;
-  border-radius: 5px;
-  background-color: snow;
-  padding: 5px;
-  color: grey;
-  transition: all 700ms;
+.record-table{
+  border-spacing: 0px;
 }
-.naviButton[disabled]{
-  opacity: 0;
-  cursor: default;
-}
-.naviButton:hover{
-  border: 1px solid grey;
-  background-color: orangered;
+
+.data-title{
+  border: 1px solid snow;
+  background-color: darkslategrey;
+  padding: 5px 20px;
   color: snow;
 }
 
-.entity{
+.data-value{
+  border: 1px solid snow;
+  background-color: wheat;
+  padding: 5px 20px;
+}
+
+.other-entity{
   display: inline-block;
-  margin: 5px;
+  margin: 5px 3px 3px 0;
   border: 1px solid grey;
   border-radius: 3px;
   padding: 0px;
 }
 
-.entity-title{
+.other-entity-title{
   display: inline-block;
-  margin: 0px;
-  padding: 10px;
-}
-
-.entity-title.name{
-  background-color: gainsboro;
-  color: snow;
-}
-
-.entity-title.level{
-  background-color: orangered;
-  color: snow;
-}
-
-.entity-title.time{
-  background-color: lightpink;
-  color: snow;
-}
-
-.entity-title.hostname{
   background-color: darkseagreen;
+  padding: 10px;
   color: snow;
 }
 
-.entity-title.pid{
-  background-color: lightskyblue;
-  color: snow;
-}
-
-.entity-title.other{
-  background-color: lightslategrey;
-  color: snow;
-}
-
-.entity-content{
+.other-entity-content{
   padding: 10px;
 }
