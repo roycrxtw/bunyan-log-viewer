@@ -19,14 +19,13 @@ body{
 
 header{
   margin: 0;
-  background-color: #800040;
-  padding-left: 20px;
+  background-color: #2d004d;
+  padding: 10px 10px 10px 20px;
   color: snow;
-  font-size: x-large;
 }
 @media (min-width: 720px){
   header{
-    padding-left: 80px;
+    padding: 5px 20px 10px 80px;
   }
 }
 
@@ -41,18 +40,25 @@ footer{
   text-align: center;
 }
 
-.menu{
-  width: 100vw;
-  margin: 0px;
-  border: 0px solid snow;
-  background-color: #800040;
-  padding: 10px 10px 10px 20px;
-  color: snow;
+a{
+  color: wheat;
+  text-decoration: none;
 }
-@media (min-width: 720px){
-  .menu{
-    padding: 5px 20px 10px 80px;
-  }
+a:hover{
+  color: orange;
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  list-style: none;
+}
+
+
+.app-title{
+  color: snow;
+  font-size: x-large;
 }
 
 .menu-item{
@@ -82,17 +88,7 @@ footer{
   }
 }
 
-ul{
-  margin: 0;
-  padding: 0;
-  text-align: left;
-  list-style: none;
-}
 
-li{
-  padding: 20px;
-  border-bottom: 1px solid darkgrey;
-}
 
 .navi-block{
   display: block;
@@ -131,7 +127,7 @@ li{
   margin: 5px 0;
   border: 0;
   border-bottom: 1px solid grey;
-  background-color: #800040;
+  background-color: #2d004d;
   padding: 15px;
   color: snow;
   font-family: "Microsoft JhengHei";
@@ -146,16 +142,11 @@ li{
   border-bottom: 1px solid wheat;
 }
 
-.time-filter{
-  padding: 13px;
-}
-
 .level-filter{
   width: 60px;
 }
 
 .level-list{
-  padding: 14px;
   cursor: pointer;
 }
 
@@ -188,9 +179,9 @@ li{
 .btnReset{
   display: inline-block;
   outline: none;
-  margin: 5px auto;
+  margin: 5px 0;
   border: 1px solid grey;
-  background-color: #800040;
+  background-color: #2d004d;
   padding: 5px;
   color: lightgrey;
   transition: all 700ms;
@@ -205,38 +196,51 @@ li{
   }
 }
 
+.record{
+  padding: 10px;
+  border-bottom: 1px solid darkgrey;
+}
+@media (min-width: 720px){
+  .record{
+    padding: 10px 10px 10px 80px;
+  }
+}
+
 .record-table{
   border-spacing: 0px;
 }
 
 .data-title{
   border: 1px solid snow;
-  background-color: darkslategrey;
+  background-color: grey;
   padding: 5px 20px;
   color: snow;
 }
 
 .data-value{
   border: 1px solid snow;
-  background-color: wheat;
+  background-color: lightgrey;
   padding: 5px 20px;
+  color: black;
 }
 
 .other-entity{
   display: inline-block;
   margin: 5px 3px 3px 0;
-  border: 1px solid grey;
+  border: 0px solid grey;
   border-radius: 3px;
   padding: 0px;
 }
 
 .other-entity-title{
   display: inline-block;
-  background-color: darkseagreen;
+  background-color: grey;
   padding: 10px;
   color: snow;
 }
 
 .other-entity-content{
+  background-color: lightgrey;
   padding: 10px;
+  color: black;
 }

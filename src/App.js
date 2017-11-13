@@ -224,7 +224,7 @@ class App extends Component {
   
     let items = [];
     for(let i = (currentPage - 1) * pageSize; i < records.length && i < currentPage * pageSize ; i++){
-      items.push(<li key={i}>{this.printRecord(records[i])}</li>);
+      items.push(<li key={i} className='record'>{this.printRecord(records[i])}</li>);
     }
     return <ul>{items}</ul>;
   };
@@ -248,7 +248,7 @@ class App extends Component {
     }
 
     return (
-      <div className='record'>
+      <div>
         <table className='record-table'>
           <tbody>
             <tr>
@@ -284,10 +284,7 @@ class App extends Component {
     return (
       <div>
         <header>
-          Bunyan Log Viewer
-        </header>
-
-        <div className="menu">
+          <div className='app-title'>Bunyan Log Viewer</div>
           <div className='menu-file-picker'>
             <input type='file' className='filter file-picker' onChange={this.fileHandler} />
           </div>
@@ -320,8 +317,10 @@ class App extends Component {
               onChange={this.searchHandler} placeholder='search' />
           </div>
 
-          <button className='btnReset' onClick={this.reset}>RESET</button>
-        </div>
+          <div className='menu-item'>
+            <button className='btnReset' onClick={this.reset}>RESET</button>
+          </div>
+        </header>
         
         <div>
           {(rawRecords) && (
@@ -337,7 +336,7 @@ class App extends Component {
         </div>
 
         <footer>
-          Nov 2017, Roy Lu (royvbtw)
+          Nov 2017, <a href='https://royvbtw.uk'>Roy Lu (royvbtw)</a> <a href='https://github.com/royvbtw/bunyan-log-viewer'>@github</a>
         </footer>
       </div>
     );
