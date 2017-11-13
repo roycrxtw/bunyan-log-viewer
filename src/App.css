@@ -1,0 +1,271 @@
+*{
+  box-sizing: border-box;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  color: #333;
+  font-family: "Microsoft JhengHei";
+  font-size: 15px;
+  font-weight: 100;
+  text-align: left;
+}
+@media (min-width: 720px){
+  body{
+    font-size: 16px;
+  }
+}
+
+header{
+  margin: 0;
+  background-color: #222;
+  padding: 5px;
+  color: snow;
+  font-size: x-large;
+}
+@media (min-width: 720px){
+  header{
+    padding-left: 80px;
+  }
+}
+
+button{
+  cursor: pointer;
+}
+
+footer{
+
+  background-color: #222;
+  padding: 20px;
+  color: lightgrey;
+  text-align: center;
+}
+
+.menu{
+  margin: 0px;
+  border: 0px solid red;
+  background-color: #222;
+  padding: 10px 10px 10px 30px;
+  color: snow;
+}
+@media (min-width: 720px){
+  .menu{
+    padding: 5px 20px 10px 80px;
+  }
+}
+
+.menu-item{
+  display: block;
+  margin: 5px;
+  border: 0px solid red;
+  padding: 0;
+}
+@media (min-width: 720px){
+  .menu-item{
+    display: inline-block;
+  }
+}
+
+.menu-file-picker{
+  display: block;
+  margin: 5px;
+  border: 0px solid red;
+  padding: 0;
+}
+@media (min-width: 720px){
+  .menu-file-picker{
+    margin: 5px;
+  }
+}
+
+.file-picker{
+  cursor: pointer;
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  list-style: none;
+}
+
+li{
+  padding: 20px;
+  border-bottom: 1px solid darkgrey;
+}
+
+label{
+  display: inline-block;
+  margin: 10px;
+  border-left: 1px solid wheat;
+  border-right: 1px solid wheat;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.navi-block{
+  display: block;
+  margin: 5px auto;
+  text-align: center;
+}
+
+.filter-title{
+  display: inline-block;
+  margin: 5px 0 5px 0px;
+  border: 1px solid darkslategrey;
+  padding: 15px;
+  cursor: default;
+}
+
+
+.field{
+  margin: 5px 0;
+  border: 0;
+  border-bottom: 1px solid darkslategrey;
+  background-color: #222;
+  padding: 15px;
+  color: snow;
+  font-family: "Microsoft JhengHei";
+  font-size: 16px;
+  transition: all 700ms;
+}
+.field:hover{
+  border-bottom: 1px solid wheat;
+}
+.field:focus{
+  outline: none;
+  border-bottom: 1px solid wheat;
+}
+
+.filter{
+  margin: 5px 0;
+  border: 0;
+  border-bottom: 1px solid darkslategrey;
+  background-color: #222;
+  padding: 15px;
+  color: snow;
+  font-family: "Microsoft JhengHei";
+  font-size: 16px;
+  transition: all 700ms;
+}
+.filter:hover{
+  border-bottom: 1px solid wheat;
+}
+
+.time-filter{
+  padding: 13px;
+}
+
+.level-filter{
+  width: 60px;
+}
+
+.level-list{
+  padding: 14px;
+  cursor: pointer;
+}
+
+.keyword-field{
+  margin: 5px 0;
+}
+.keyword-field:focus{
+  outline: none;
+  border-bottom: 1px solid wheat;
+}
+@media (min-width: 720px){
+  .keyword-field{
+    display: block;
+    margin: 5px auto;
+    color: snow;
+    font-size: 18px;
+    font-weight: 100;
+  }
+}
+
+.btnReset{
+  display: block;
+  outline: none;
+  margin: 5px auto;
+  border: 1px solid darkslategrey;
+  background-color: #222;
+  padding: 5px;
+  color: lightgrey;
+  transition: all 700ms;
+}
+.btnReset:hover{
+  border: 1px solid wheat;
+  color: snow;
+}
+@media (min-width: 720px){
+  .btnReset{
+    display: inline-block;
+  }
+}
+
+.naviButton{
+  margin: 5px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  background-color: snow;
+  padding: 5px;
+  color: grey;
+  transition: all 700ms;
+}
+.naviButton[disabled]{
+  opacity: 0;
+  cursor: default;
+}
+.naviButton:hover{
+  border: 1px solid grey;
+  background-color: orangered;
+  color: snow;
+}
+
+.entity{
+  display: inline-block;
+  margin: 5px;
+  border: 1px solid grey;
+  border-radius: 3px;
+  padding: 0px;
+}
+
+.entity-title{
+  display: inline-block;
+  margin: 0px;
+  padding: 10px;
+}
+
+.entity-title.name{
+  background-color: gainsboro;
+  color: snow;
+}
+
+.entity-title.level{
+  background-color: orangered;
+  color: snow;
+}
+
+.entity-title.time{
+  background-color: lightpink;
+  color: snow;
+}
+
+.entity-title.hostname{
+  background-color: darkseagreen;
+  color: snow;
+}
+
+.entity-title.pid{
+  background-color: lightskyblue;
+  color: snow;
+}
+
+.entity-title.other{
+  background-color: lightslategrey;
+  color: snow;
+}
+
+.entity-content{
+  padding: 10px;
+}

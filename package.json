@@ -1,0 +1,22 @@
+{
+  "name": "bunyan-log-viewer",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "homepage": "https://github.com/royvbtw/bunyan-log-viewer",
+  "dependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-scripts": "1.0.17"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/royvbtw/bunyan-log-viewer.git"
+  }
+}
