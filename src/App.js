@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import './App.css';
 
@@ -7,34 +8,24 @@ let rawRecords = null;
 const Navi = (props) => {
   const { currentPage, pageCount, pageHandler, recordCount } = props;
   return (
-    <div className='navi-block'> 
-      {(recordCount > 0) && (
-        <div>Found {recordCount} results. Current page: {currentPage} / {pageCount}.</div>
+    <div>
+      {(rawRecords && rawRecords.length > 0) && (
+        <div className='navi-block'>
+          <div>Found {recordCount} results. Current page: {currentPage} / {pageCount}.</div>
+
+          <button className='naviButton' disabled={(recordCount > 0 && currentPage > 1)? false: true} 
+            onClick={() => pageHandler('first')}>First page</button>
+
+          <button className='naviButton' disabled={(recordCount > 0 && currentPage > 1)? false: true} 
+            onClick={() => pageHandler('prev')}>Previous page</button>
+
+          <button className='naviButton' onClick={() => pageHandler('next')} 
+            disabled={(recordCount > 0 && currentPage < pageCount)? false: true} >Next page</button>
+      
+          <button className='naviButton' onClick={() => pageHandler('last')}
+            disabled={(recordCount > 0 && currentPage < pageCount)? false: true} >Last page</button>
+        </div>
       )}
-
-      <button className='naviButton' disabled={(recordCount > 0 && currentPage > 1)? false: true} 
-        onClick={() => pageHandler('first')}
-      >
-        First page
-      </button>
-
-      <button className='naviButton' disabled={(recordCount > 0 && currentPage > 1)? false: true} 
-        onClick={() => pageHandler('prev')}
-      >
-        Previous page
-      </button>
-      
-      <button className='naviButton' disabled={(recordCount > 0 && currentPage < pageCount)? false: true} 
-        onClick={() => pageHandler('next')}
-      >
-        Next page
-      </button>
-      
-      <button className='naviButton' disabled={(recordCount > 0 && currentPage < pageCount)? false: true} 
-        onClick={() => pageHandler('last')}
-      >
-        Last page
-      </button>
     </div>
   );
 };
@@ -56,8 +47,7 @@ const parseData = (data) => {
     });
     return parsedData;
   }catch(ex){
-    console.log('ex in parseData(): ', ex);
-    return null;
+    throw new Error('Unable to parse this file. It should be a valid bunyan log file.');
   }
 };
 
@@ -84,14 +74,14 @@ class App extends Component {
   constructor(props){
     super(props);
 
-    rawRecords = undefined;
     this.state = {
       keyword: '',
       date: 0,
       level: 30,
-      records: [],
+      records: null,
       currentPage: 1,
-      pageCount: 1
+      pageCount: 1,
+      appMessage: null
     };
   }
 
@@ -118,11 +108,16 @@ class App extends Component {
       this.resetFilter();
 
       const data = await readFile(event.target.files[0]);
-      const r = parseData(data);
-      rawRecords = r;
-      this.setState({ records: r }, () => this.search());     
+      const records = parseData(data);
+      rawRecords = records;
+      this.setState({ records, appMessage: undefined }, () => this.search());     
     }catch(ex){
-      console.log('Error in fileHandler():', ex);
+      console.log(ex.message);
+      rawRecords = null;
+      this.setState({
+        appMessage: ex.message,
+        records: null
+      })
     }
   }
 
@@ -130,20 +125,16 @@ class App extends Component {
     const keyword = event.target.value;
     const { records } = this.state;
     
+    // it should update keyword state even if there is no any records loaded.
     if(!records){
       this.setState({keyword});
       return;
     }
 
     if(keyword === ''){
-      this.setState({
-        keyword,
-        records: rawRecords
-      }, () => this.search());
+      this.setState({ keyword, records: rawRecords }, () => this.search());
     }else{
-      this.setState({
-        keyword
-      }, () => this.search());
+      this.setState({ keyword }, () => this.search());
     }
   };
 
@@ -218,9 +209,9 @@ class App extends Component {
     this.setState({currentPage: newPage});
   };
 
-  printRecords = () => {
+  Records = (props) => {
     const { records, currentPage } = this.state;
-    if(!records) return;
+    if(!records) return null;
   
     let items = [];
     for(let i = (currentPage - 1) * pageSize; i < records.length && i < currentPage * pageSize ; i++){
@@ -281,6 +272,13 @@ class App extends Component {
   render() {
     const { level, keyword } = this.state;
 
+    const AppMessage = (props) => {
+      const content = (props.msg)? (<div className='app-message'>{props.msg}</div>): null;
+      return (
+        <div>{content}</div>
+      );
+    };
+
     return (
       <div>
         <header>
@@ -322,17 +320,19 @@ class App extends Component {
           </div>
         </header>
         
+        <AppMessage msg={this.state.appMessage}/>
+
         <div>
-          {(rawRecords) && (
-            <Navi currentPage={this.state.currentPage} 
-              pageCount={this.state.pageCount}
-              pageHandler={this.pageHandler}
-              prevPageHandler={this.prevPageHandler}
-              nextPageHandler={this.nextPageHandler}
-              recordCount={this.state.records.length}
-            />
-          )}
-          {this.printRecords()}
+          {/* {(rawRecords) && ( */}
+          <Navi currentPage={this.state.currentPage} 
+            pageCount={this.state.pageCount}
+            pageHandler={this.pageHandler}
+            prevPageHandler={this.prevPageHandler}
+            nextPageHandler={this.nextPageHandler}
+            recordCount={this.state.records ? this.state.records.length: 0}
+          />
+          
+          <this.Records />
         </div>
 
         <footer>

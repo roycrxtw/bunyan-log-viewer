@@ -1,4 +1,4 @@
-{"name":"index","hostname":"Lenovo-PC","pid":7764,"level":30,"msg":"------------------------------","time":"2017-10-25T16:27:00.307Z"}
+{"name":"index","hostname":"Lenovo-PC","pid":7764,"level":30,"msg":"First record","locals":{"user":"test:3310","displayName":"master","flash":"Login ok"},"time":"2017-09-25T16:27:00.307Z"}
 {"name":"index","hostname":"Lenovo-PC","pid":5572,"level":20,"locals":{"flash":"請先登入"},"msg":"Print locals","time":"2017-10-26T10:33:56.468Z","v":0}
 {"name":"","hostname":"Lenovo-PC","pid":7764,"level":30,"msg":"Express server started in development on port 3002. baseurl=undefined","time":"2017-10-25T16:27:00.307Z","v":0}
 {"hostname":"Lenovo-PC","pid":7764,"level":30,"msg":"伺服器已啟動","time":"2017-10-25T16:27:00.308Z","v":0}
