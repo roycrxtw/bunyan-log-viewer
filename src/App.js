@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import './App.css';
+import Records from './Records'
 
 let pageSize = 50;
 let rawRecords = null;
@@ -43,6 +44,7 @@ const parseData = (data) => {
           record[key] = JSON.stringify(record[key]);
         }
       }
+
       parsedData.push(record);
     });
     return parsedData;
@@ -145,20 +147,20 @@ class App extends Component {
     if(!rawRecords) return;
 
     const result = [];
-    rawRecords.forEach( (entity, i) => {
-      if(entity && entity !== ''){
-        for(let key in entity){
-          if(typeof(entity[key]) === 'string' 
-            && entity[key].search(pattern) !== -1 
-            && Number(entity.level) >= Number(level)
-            && (new Date(entity.time)) >= (new Date(date))
+    rawRecords.forEach( (record, i) => {
+      if(record && record !== ''){
+        for(let key in record){
+          if(typeof(record[key]) === 'string' 
+            && record[key].search(pattern) !== -1 
+            && Number(record.level) >= Number(level)
+            && (new Date(record.time)) >= (new Date(date))
           ){
-            result.push(entity);
+            result.push(record);
             break;
           }
         }
       }else{
-        console.log('Entity does not exist or it is an empty string: Do nothing.');
+        console.log('Record does not exist or it is an empty string: Do nothing.');
       }
     });
 
@@ -207,62 +209,6 @@ class App extends Component {
         break;
     }
     this.setState({currentPage: newPage});
-  };
-
-  Records = (props) => {
-    const { records, currentPage } = this.state;
-    if(!records) return null;
-  
-    let items = [];
-    for(let i = (currentPage - 1) * pageSize; i < records.length && i < currentPage * pageSize ; i++){
-      items.push(<li key={i} className='record'>{this.printRecord(records[i])}</li>);
-    }
-    return <ul>{items}</ul>;
-  };
-
-  printRecord = (entity) => {
-    function otherRecords(){
-      const otherRecords = [];
-      Object.keys(entity).forEach( (key, i) => {
-        if(key !== 'name' && key !== 'level' && key !== 'hostname' 
-          && key !== 'time' && key !== 'pid' && key !== 'v'
-        ){
-          otherRecords.push(
-            <div className='other-entity' id='otherEntity' key={i}>
-              <span className='other-entity-title'>{key}</span>
-              <span className='other-entity-content'>{(entity[key])}</span>
-            </div>
-          );
-        }
-      });
-      return otherRecords;
-    }
-
-    return (
-      <div>
-        <table className='record-table'>
-          <tbody>
-            <tr>
-              <td className='data-title'>Name</td>
-              <td className='data-title'>Time</td>
-              <td className='data-title'>Level</td>
-              <td className='data-title'>Hostname</td>
-              <td className='data-title'>PID</td>
-              <td className='data-title'>v</td>
-            </tr>
-            <tr>
-              <td className='data-value'>{entity.name}</td>
-              <td className='data-value'>{entity.time}</td>
-              <td className='data-value'>{entity.level}</td>
-              <td className='data-value'>{entity.hostname}</td>
-              <td className='data-value'>{entity.pid}</td>
-              <td className='data-value'>{entity.v}</td>
-            </tr>
-          </tbody>
-        </table>
-        {otherRecords()}
-      </div>
-    );
   };
 
   reset = () => {
@@ -332,7 +278,8 @@ class App extends Component {
             recordCount={this.state.records ? this.state.records.length: 0}
           />
           
-          <this.Records />
+          <Records currentPage={this.state.currentPage} records={this.state.records}
+            pageSize={pageSize} />
         </div>
 
         <footer>

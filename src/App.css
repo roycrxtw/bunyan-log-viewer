@@ -232,22 +232,24 @@ ul{
   color: black;
 }
 
-.other-entity{
+.other-record{
   display: inline-block;
-  margin: 5px 3px 3px 0;
-  border: 0px solid grey;
+  margin: 5px 3px 0px 0;
+  border: 1px solid grey;
   border-radius: 3px;
   padding: 0px;
+  
 }
 
-.other-entity-title{
+.other-record-title{
   display: inline-block;
   background-color: grey;
   padding: 10px;
   color: snow;
 }
 
-.other-entity-content{
+.other-record-content{
+  display: inline-block;
   background-color: lightgrey;
   padding: 10px;
   color: black;
