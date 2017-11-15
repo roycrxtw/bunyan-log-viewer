@@ -1,36 +1,16 @@
 
 import React, { Component } from 'react';
 import './App.css';
-import Records from './Records'
+import Records from './Records';
+import Navi from './Navi';
 
-let pageSize = 50;
-let rawRecords = null;
+//let pageSize = 50;
+//let rawRecords = null;
 
-const Navi = (props) => {
-  const { currentPage, pageCount, pageHandler, recordCount } = props;
-  return (
-    <div>
-      {(rawRecords && rawRecords.length > 0) && (
-        <div className='navi-block'>
-          <div>Found {recordCount} results. Current page: {currentPage} / {pageCount}.</div>
-
-          <button className='naviButton' disabled={(recordCount > 0 && currentPage > 1)? false: true} 
-            onClick={() => pageHandler('first')}>First page</button>
-
-          <button className='naviButton' disabled={(recordCount > 0 && currentPage > 1)? false: true} 
-            onClick={() => pageHandler('prev')}>Previous page</button>
-
-          <button className='naviButton' onClick={() => pageHandler('next')} 
-            disabled={(recordCount > 0 && currentPage < pageCount)? false: true} >Next page</button>
-      
-          <button className='naviButton' onClick={() => pageHandler('last')}
-            disabled={(recordCount > 0 && currentPage < pageCount)? false: true} >Last page</button>
-        </div>
-      )}
-    </div>
-  );
-};
-
+/**
+ * Parse plain string into object.
+ * @param {Array.<object>} data 
+ */
 const parseData = (data) => {
   const parsedData = [];
   try{
@@ -61,8 +41,8 @@ const readFile = (file) => {
       reader.readAsText(file);
       reader.onload = function(event){
         const text = event.target.result;
-        const records = text.split('\n');
-        return resolve(records);
+        const data = text.split('\n');
+        return resolve(data);
       }
     }catch(ex){
       console.log('Error in readFile():', ex);
@@ -80,9 +60,11 @@ class App extends Component {
       keyword: '',
       date: 0,
       level: 30,
-      records: null,
+      rawRecords: null,
+      filteredRecords: null,
       currentPage: 1,
       pageCount: 1,
+      pageSize: 50,
       appMessage: null
     };
   }
@@ -106,47 +88,49 @@ class App extends Component {
       const file = event.target.files[0];
       if(!file) return;
 
-      rawRecords = undefined;
+      //rawRecords = undefined;
       this.resetFilter();
 
       const data = await readFile(event.target.files[0]);
-      const records = parseData(data);
-      rawRecords = records;
-      this.setState({ records, appMessage: undefined }, () => this.search());     
+      const rawRecords = parseData(data);
+      this.setState({
+        rawRecords,
+        appMessage: undefined 
+      }, () => this.search());     
     }catch(ex){
       console.log(ex.message);
-      rawRecords = null;
       this.setState({
         appMessage: ex.message,
-        records: null
+        rawRecords: null,
+        filteredRecords: null
       })
     }
   }
 
   searchHandler = (event) => {
     const keyword = event.target.value;
-    const { records } = this.state;
+    const { rawRecords } = this.state;
     
     // it should update keyword state even if there is no any records loaded.
-    if(!records){
+    if(!rawRecords){
       this.setState({keyword});
       return;
     }
 
     if(keyword === ''){
-      this.setState({ keyword, records: rawRecords }, () => this.search());
+      this.setState({ keyword, filteredRecords: rawRecords }, () => this.search());
     }else{
       this.setState({ keyword }, () => this.search());
     }
   };
 
   search = () => {
-    const { keyword, level, date } = this.state;
+    const { keyword, level, date, rawRecords, pageSize } = this.state;
     const pattern = new RegExp(keyword, 'gi');
 
     if(!rawRecords) return;
 
-    const result = [];
+    const filteredRecords = [];
     rawRecords.forEach( (record, i) => {
       if(record && record !== ''){
         for(let key in record){
@@ -155,7 +139,7 @@ class App extends Component {
             && Number(record.level) >= Number(level)
             && (new Date(record.time)) >= (new Date(date))
           ){
-            result.push(record);
+            filteredRecords.push(record);
             break;
           }
         }
@@ -165,9 +149,9 @@ class App extends Component {
     });
 
     this.setState({
-      records: result,
+      filteredRecords,
       currentPage: 1,
-      pageCount: Math.ceil(result.length / pageSize)
+      pageCount: Math.ceil(filteredRecords.length / pageSize)
     });
   };
 
@@ -269,17 +253,15 @@ class App extends Component {
         <AppMessage msg={this.state.appMessage}/>
 
         <div>
-          {/* {(rawRecords) && ( */}
           <Navi currentPage={this.state.currentPage} 
             pageCount={this.state.pageCount}
             pageHandler={this.pageHandler}
-            prevPageHandler={this.prevPageHandler}
-            nextPageHandler={this.nextPageHandler}
-            recordCount={this.state.records ? this.state.records.length: 0}
+            rawRecordCount={this.state.rawRecords? this.state.rawRecords.length: 0}
+            recordCount={this.state.filteredRecords ? this.state.filteredRecords.length: 0}
           />
           
-          <Records currentPage={this.state.currentPage} records={this.state.records}
-            pageSize={pageSize} />
+          <Records currentPage={this.state.currentPage} records={this.state.filteredRecords}
+            pageSize={this.state.pageSize} />
         </div>
 
         <footer>

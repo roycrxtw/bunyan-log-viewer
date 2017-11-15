@@ -41,11 +41,11 @@ footer{
 }
 
 a{
-  color: wheat;
+  color: skyblue;
   text-decoration: none;
 }
 a:hover{
-  color: orange;
+  color: deepskyblue;
 }
 
 ul{
@@ -235,7 +235,7 @@ ul{
 .other-record{
   display: inline-block;
   margin: 5px 3px 0px 0;
-  border: 1px solid grey;
+  border: 0px solid grey;
   border-radius: 3px;
   padding: 0px;
   

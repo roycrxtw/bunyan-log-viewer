@@ -49,9 +49,9 @@ export default class Records extends Component{
 
   render(){
     const { records, currentPage, pageSize} = this.props;
-    let list = null;
     if(!records) return null;
-  
+
+    let list = null;
     const listItems = [];
     for(let i = (currentPage - 1) * pageSize; i < records.length && i < currentPage * pageSize ; i++){
       listItems.push(<li key={i} className='record'>{this.printRecord(records[i])}</li>);
