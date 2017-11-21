@@ -37,15 +37,17 @@ footer{
   background-color: #222;
   padding: 20px;
   color: lightgrey;
+  font-weight: 400;
   text-align: center;
 }
 
 a{
-  color: skyblue;
+  color: rosybrown;
   text-decoration: none;
 }
 a:hover{
-  color: deepskyblue;
+  /* color: deeppink; */
+  text-decoration: underline;
 }
 
 ul{

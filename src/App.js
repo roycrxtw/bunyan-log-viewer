@@ -4,6 +4,9 @@ import './App.css';
 import Records from './Records';
 import Navi from './Navi';
 
+import { generateRegexp, readFile } from './util';
+
+
 //let pageSize = 50;
 //let rawRecords = null;
 
@@ -33,23 +36,7 @@ const parseData = (data) => {
   }
 };
 
-const readFile = (file) => {
-  return new Promise( (resolve, reject) => {
-    try{
-      console.log(`Loading file: ${file.name}`);
-      const reader = new FileReader();
-      reader.readAsText(file);
-      reader.onload = function(event){
-        const text = event.target.result;
-        const data = text.split('\n');
-        return resolve(data);
-      }
-    }catch(ex){
-      console.log('Error in readFile():', ex);
-      return reject('Error in readFile().');
-    }
-  });
-};
+
 
 
 class App extends Component {
@@ -125,8 +112,10 @@ class App extends Component {
   };
 
   search = () => {
-    const { keyword, level, date, rawRecords, pageSize } = this.state;
-    const pattern = new RegExp(keyword, 'gi');
+    const { level, date, rawRecords, pageSize, keyword } = this.state;
+
+    const keywords = keyword.trim().replace(/  +/g, ' ').split(' ');
+    const regexp = generateRegexp(keywords);
 
     if(!rawRecords) return;
 
@@ -135,7 +124,7 @@ class App extends Component {
       if(record && record !== ''){
         for(let key in record){
           if(typeof(record[key]) === 'string' 
-            && record[key].search(pattern) !== -1 
+            && regexp.test(record[key])
             && Number(record.level) >= Number(level)
             && (new Date(record.time)) >= (new Date(date))
           ){
