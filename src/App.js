@@ -1,43 +1,13 @@
 
 import React, { Component } from 'react';
+import reactStringReplace from 'react-string-replace';
+
 import './App.css';
 import Records from './Records';
 import Navi from './Navi';
+import { escapeRegExp, generateHighlightRegexp, generateRegexp, readFile, parseData } from './util';
 
-import { generateRegexp, readFile } from './util';
-
-
-//let pageSize = 50;
-//let rawRecords = null;
-
-/**
- * Parse plain string into object.
- * @param {Array.<object>} data 
- */
-const parseData = (data) => {
-  const parsedData = [];
-  try{
-    data.forEach( item => {
-      if(!item || item === '') return;
-      
-      let record = JSON.parse(item);
-      
-      for(let key in record){
-        if( typeof(record[key]) !== 'string'){
-          record[key] = JSON.stringify(record[key]);
-        }
-      }
-
-      parsedData.push(record);
-    });
-    return parsedData;
-  }catch(ex){
-    throw new Error('Unable to parse this file. It should be a valid bunyan log file.');
-  }
-};
-
-
-
+const PAGE_SIZE = 50;
 
 class App extends Component {
   constructor(props){
@@ -45,44 +15,51 @@ class App extends Component {
 
     this.state = {
       keyword: '',
+      keywordSet: [],
+      selectedFile: '',
       date: 0,
       level: 30,
       rawRecords: null,
       filteredRecords: null,
       currentPage: 1,
       pageCount: 1,
-      pageSize: 50,
+      pageSize: PAGE_SIZE,
       appMessage: null
     };
+  }
+
+  componentDidUpdate(){
+    window.scroll(0, 0);
   }
 
   resetFilter = (cb) => {
     this.setState({
       keyword: '',
+      keywordSet: [],
       date: 0,
       level: 30,
       currentPage: 1,
       pageCount: 1
     }, () => {
-      if(cb){
-        cb();
-      }
+      if(cb) cb();
     });
   };
 
   fileHandler = async (event) => {
     try{
+      
       const file = event.target.files[0];
       if(!file) return;
+      console.log(`file=`, file.name);
 
-      //rawRecords = undefined;
       this.resetFilter();
 
       const data = await readFile(event.target.files[0]);
       const rawRecords = parseData(data);
       this.setState({
         rawRecords,
-        appMessage: undefined 
+        selectedFile: file.name,
+        appMessage: undefined
       }, () => this.search());     
     }catch(ex){
       console.log(ex.message);
@@ -94,59 +71,67 @@ class App extends Component {
     }
   }
 
-  searchHandler = (event) => {
+  keywordChangeHandler = (event) => {
     const keyword = event.target.value;
-    const { rawRecords } = this.state;
-    
-    // it should update keyword state even if there is no any records loaded.
-    if(!rawRecords){
-      this.setState({keyword});
-      return;
-    }
-
-    if(keyword === ''){
-      this.setState({ keyword, filteredRecords: rawRecords }, () => this.search());
-    }else{
-      this.setState({ keyword }, () => this.search());
-    }
+    this.setState({ keyword });
   };
 
   search = () => {
-    const { level, date, rawRecords, pageSize, keyword } = this.state;
-
-    const keywords = keyword.trim().replace(/  +/g, ' ').split(' ');
-    const regexp = generateRegexp(keywords);
-
+    const { level, date, rawRecords, pageSize, keywordSet } = this.state;
+    
     if(!rawRecords) return;
 
+    const regexp = generateRegexp(keywordSet);
     const filteredRecords = [];
     rawRecords.forEach( (record, i) => {
-      if(record && record !== ''){
-        for(let key in record){
-          if(typeof(record[key]) === 'string' 
-            && regexp.test(record[key])
-            && Number(record.level) >= Number(level)
-            && (new Date(record.time)) >= (new Date(date))
-          ){
-            filteredRecords.push(record);
-            break;
-          }
-        }
-      }else{
-        console.log('Record does not exist or it is an empty string: Do nothing.');
+      // Test if the record date matches the filter.
+      if(new Date(record.time) < new Date(date)){
+        return;
       }
+
+      // Test if the record level matches the filter.
+      if( Number(record.level) < Number(level) ){
+        return;
+      }
+
+      // Test if values in this record matches the keywords.
+      // It will test **_rawReord** rather than test every key-value in the record
+      // for effectiveness.
+      if( record['_rawRecord'].search(regexp) === -1){
+        return;
+      }
+      filteredRecords.push({...record});
     });
 
     this.setState({
       filteredRecords,
       currentPage: 1,
-      pageCount: Math.ceil(filteredRecords.length / pageSize)
-    });
+      pageCount: Math.ceil(filteredRecords.length / pageSize),
+      isSpinning: false
+    }, () => this.highlight());
   };
+
+  highlight = () => {
+    const { filteredRecords, keywordSet } = this.state;
+    
+    if(keywordSet.length === 0) return;
+
+    const highlightRegexp = generateHighlightRegexp(keywordSet);
+
+    filteredRecords.forEach( record => {
+      for(let key in record){
+        record[key] = reactStringReplace(record[key], highlightRegexp, (match, i) => (
+          <span className='highlight' key={i}>{match}</span>
+        ))
+      }
+    });
+    this.setState({ filteredRecords });
+  };
+
 
   levelFilter = (event) => {
     let level = Number(event.target.value);
-    level = (level < 0 || level === 'NaN')? 0: level;
+    level = (isNaN(level) || level < 0)? 0: level;
     this.setState({ level }, () => this.search());
   };
 
@@ -162,34 +147,52 @@ class App extends Component {
   };
 
   pageHandler = (cmd) => {
-    console.log(`pageHandler(${cmd}) started.`);
     const { currentPage, pageCount } = this.state;
     let newPage;
     switch(cmd){
-      case 'first':
-        newPage = 1;
-        break;
-      case 'next':
-        newPage = currentPage + 1;
-        break;
-      case 'prev':
-        newPage = (currentPage > 1)? currentPage - 1: 1;
-        break;
-      case 'last':
-        newPage = pageCount;
-        break;
-      default:
-        break;
+      case 'first': newPage = 1; break;
+      case 'next':  newPage = currentPage + 1; break;
+      case 'prev':  newPage = (currentPage > 1)? currentPage - 1: 1; break;
+      case 'last':  newPage = pageCount; break;
+      default: break;
     }
     this.setState({currentPage: newPage});
+  };
+
+  submitHandler = (event) => {
+    if(event.key === 'Enter'){
+      this.submit();
+    }
+  };
+
+  submit = () => {
+    const { keyword, rawRecords } = this.state;
+    
+    if(!rawRecords) return;
+
+    let keywordSet = [];
+    if(keyword !== ''){
+      const temp = escapeRegExp(keyword.trim().replace(/  +/g, ' '));
+      keywordSet = temp.split(' ');
+    }
+    this.setState({ keyword, keywordSet }, () => this.search());
   };
 
   reset = () => {
     this.resetFilter(this.search);
   };
 
+  closeFile = () => {
+    this.resetFilter();
+    this.setState({
+      rawRecords: null,
+      filteredRecords: null,
+      selectedFile: ''
+    });
+  };
+
   render() {
-    const { level, keyword } = this.state;
+    const { level, keyword, selectedFile } = this.state;
 
     const AppMessage = (props) => {
       const content = (props.msg)? (<div className='app-message'>{props.msg}</div>): null;
@@ -203,7 +206,11 @@ class App extends Component {
         <header>
           <div className='app-title'>Bunyan Log Viewer</div>
           <div className='menu-file-picker'>
-            <input type='file' className='filter file-picker' onChange={this.fileHandler} />
+            <label className='filter-title'>File</label>
+            <label className='filter file-picker'>name: {selectedFile}
+            <input type='file' className='filter hidden-file-input' value={''}
+              onChange={this.fileHandler} />
+            </label>
           </div>
 
           <div className='menu-item'>
@@ -212,7 +219,7 @@ class App extends Component {
 
           <div className='menu-item'>
             <div className='filter-title'>date</div>
-            <input type='date' className='filter time-filter' onChange={this.dateFilter}/>
+            <input type='date' className='filter' onChange={this.dateFilter}/>
           </div>
           
           <div className='menu-item'>
@@ -231,11 +238,14 @@ class App extends Component {
           
           <div className='menu-item'>
             <input type='text' className='filter keyword-field' value={keyword} 
-              onChange={this.searchHandler} placeholder='search' />
+              onChange={this.keywordChangeHandler} onKeyPress={this.submitHandler} 
+              placeholder='search' />
           </div>
 
           <div className='menu-item'>
-            <button className='btnReset' onClick={this.reset}>RESET</button>
+            <button className='menu-button' onClick={this.submit}>Search</button>
+            <button className='menu-button' onClick={this.reset}>Reset</button>
+            <button className='menu-button' onClick={this.closeFile}>Close</button>
           </div>
         </header>
         
@@ -251,7 +261,14 @@ class App extends Component {
           
           <Records currentPage={this.state.currentPage} records={this.state.filteredRecords}
             pageSize={this.state.pageSize} />
-        </div>
+
+          <Navi currentPage={this.state.currentPage} 
+            pageCount={this.state.pageCount}
+            pageHandler={this.pageHandler}
+            rawRecordCount={this.state.rawRecords? this.state.rawRecords.length: 0}
+            recordCount={this.state.filteredRecords ? this.state.filteredRecords.length: 0}
+          />
+        </div>          
 
         <footer>
           Nov 2017, <a href='https://royvbtw.uk'>Roy Lu (royvbtw)</a> <a href='https://github.com/royvbtw/bunyan-log-viewer'>@github</a>

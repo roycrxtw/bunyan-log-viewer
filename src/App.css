@@ -4,6 +4,7 @@
 
 body{
   margin: 0;
+  background-color: snow;
   padding: 0;
   color: #333;
   font-family: "Microsoft JhengHei";
@@ -46,7 +47,6 @@ a{
   text-decoration: none;
 }
 a:hover{
-  /* color: deeppink; */
   text-decoration: underline;
 }
 
@@ -55,6 +55,22 @@ ul{
   padding: 0;
   text-align: left;
   list-style: none;
+}
+
+pre{
+  margin: 0;
+  padding: 0;
+  color: black;
+  font-family: "Microsoft JhengHei";
+  font-size: 15px;
+  font-weight: 100;
+  word-wrap: break-word;
+}
+@media (min-width: 720px){
+  pre{
+    font-size: 16px;
+    
+  }
 }
 
 
@@ -88,17 +104,9 @@ ul{
   padding: 0;
 }
 
-.file-picker{
-  width: 80vw;
-  cursor: pointer;
+.hidden-file-input{
+  display: none;
 }
-@media (min-width: 720px){
-  .file-picker{
-    width: 400px;
-  }
-}
-
-
 
 .navi-block{
   display: block;
@@ -108,26 +116,29 @@ ul{
 
 .naviButton{
   margin: 5px;
+  outline: none;
   border: 1px solid grey;
-  border-radius: 5px;
+  border-radius: 3px;
   background-color: snow;
-  padding: 5px;
+  padding: 10px;
   color: grey;
-  transition: all 700ms;
+  transition: all 400ms;
 }
 .naviButton[disabled]{
   opacity: 0;
   cursor: default;
 }
 .naviButton:hover{
-  border: 1px solid grey;
-  background-color: orangered;
-  color: snow;
+  border: 1px solid snow;
+  border-bottom: 1px solid rosybrown;
+  background-color: snow;
+  color: rosybrown;
 }
 
 .filter-title{
   display: inline-block;
   margin: 5px 0 5px 0px;
+  outline: none;
   border: 1px solid grey;
   padding: 15px;
   cursor: default;
@@ -135,6 +146,7 @@ ul{
 
 .filter{
   margin: 5px 0;
+  outline: none;
   border: 0;
   border-bottom: 1px solid grey;
   background-color: #2d004d;
@@ -150,6 +162,17 @@ ul{
 .filter:focus{
   outline: none;
   border-bottom: 1px solid wheat;
+}
+
+.file-picker{
+  display: inline-block;
+  width: 200px;
+  cursor: pointer;
+}
+@media (min-width: 720px){
+  .file-picker{
+    width: 300px;
+  }
 }
 
 .level-filter{
@@ -186,24 +209,20 @@ ul{
   }
 }
 
-.btnReset{
+.menu-button{
   display: inline-block;
   outline: none;
   margin: 5px 0;
   border: 1px solid grey;
   background-color: #2d004d;
-  padding: 5px;
+  padding: 10px;
   color: lightgrey;
-  transition: all 700ms;
+  transition: all 400ms;
 }
-.btnReset:hover{
-  border: 1px solid wheat;
+.menu-button:hover{
+  border: 1px solid snow;
+  background-color: indigo;
   color: snow;
-}
-@media (min-width: 720px){
-  .btnReset{
-    display: inline-block;
-  }
 }
 
 .record{
@@ -222,29 +241,30 @@ ul{
 
 .data-title{
   border: 1px solid snow;
-  background-color: grey;
+  background-color: darkslateblue ;
   padding: 5px 20px;
   color: snow;
 }
 
 .data-value{
   border: 1px solid snow;
-  background-color: lightgrey;
+  background-color: antiquewhite;
   padding: 5px 20px;
   color: black;
 }
 
 .other-record{
   display: inline-block;
+  vertical-align: top;
   margin: 5px 3px 0px 0;
   border: 0px solid grey;
   border-radius: 3px;
   padding: 0px;
-  
 }
 
 .other-record-title{
   display: inline-block;
+  vertical-align: top;
   background-color: grey;
   padding: 10px;
   color: snow;
@@ -252,7 +272,12 @@ ul{
 
 .other-record-content{
   display: inline-block;
-  background-color: lightgrey;
+  background-color: antiquewhite;
   padding: 10px;
   color: black;
+}
+
+.highlight{
+  color: blue;
+  font-weight: 900;
 }

@@ -7,12 +7,12 @@ export default class Records extends Component{
       const otherRecords = [];
       Object.keys(record).forEach( (key, i) => {
         if(key !== 'name' && key !== 'level' && key !== 'hostname' 
-          && key !== 'time' && key !== 'pid' && key !== 'v'
+          && key !== 'time' && key !== 'pid' && key !== 'v' && key !== '_rawRecord'
         ){
           otherRecords.push(
             <div className='other-record' key={i}>
               <span className='other-record-title'>{key}</span>
-              <span className='other-record-content'>{(record[key])}</span>
+              <span className='other-record-content'><pre>{record[key]}</pre></span>
             </div>
           );
         }

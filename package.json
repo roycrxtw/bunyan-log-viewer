@@ -1,6 +1,6 @@
 {
   "name": "bunyan-log-viewer",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "license": "MIT",
   "homepage": "https://royvbtw.github.io/bunyan-log-viewer/",
@@ -8,7 +8,8 @@
     "gh-pages": "^1.0.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-scripts": "1.0.17"
+    "react-scripts": "1.0.17",
+    "react-string-replace": "^0.4.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,31 +1,31 @@
-{"name":"index","hostname":"Lenovo-PC","pid":7764,"level":30,"msg":"First record","locals":{"user":"test:3310","displayName":"master","flash":"Login ok"},"time":"2017-09-25T16:27:00.307Z"}
-{"name":"index","hostname":"Lenovo-PC","pid":7764,"level":30,"msg":"Second record","locals":{"user":"test:3311","displayName":"Manchester","flash":"Login ok"},"time":"2017-09-25T16:27:00.307Z"}
-{"name":"index","hostname":"Lenovo-PC","pid":5572,"level":20,"locals":{"flash":"請先登入"},"msg":"Print locals","time":"2017-10-26T10:33:56.468Z","v":0}
-{"name":"","hostname":"Lenovo-PC","pid":7764,"level":30,"msg":"Express server started in development on port 3002. baseurl=undefined","time":"2017-10-25T16:27:00.307Z","v":0}
-{"hostname":"Lenovo-PC","pid":7764,"level":30,"msg":"伺服器已啟動","time":"2017-10-25T16:27:00.308Z","v":0}
-{"name":"connector","hostname":"Lenovo-PC","pid":7764,"level":30,"msg":"[mongoose] Mongodb is opened","time":"2017-10-25T16:27:01.646Z","v":0}
-{"name":"connector","hostname":"Lenovo-PC","pid":7764,"level":50,"msg":"[error] mongoose connection does not exist.","time":"2017-10-25T16:27:03.646Z","v":0}
-{"name":"index","hostname":"Lenovo-PC","pid":7764,"level":20,"locals":{"uid":"test:6023","displayName":"Roy","flash":"成功登入"},"msg":"Print locals","time":"2017-10-25T16:27:36.069Z","v":0}
-{"name":"index","hostname":"Lenovo-PC","pid":7764,"level":20,"locals":{"uid":"test:6023","displayName":"All new Roy","flash":"更新成功囉"},"msg":"Print locals","time":"2017-10-25T16:27:54.726Z","v":0}
-{"name":"index","hostname":"Lenovo-PC","pid":7764,"level":20,"locals":{"flash":"您已成功登出，歡迎再來。"},"msg":"Print locals","time":"2017-10-25T16:28:12.914Z","v":0}
-{"name":"index","hostname":"Lenovo-PC","pid":5480,"level":30,"msg":"------------------------------","time":"2017-10-25T17:41:09.499Z","v":0}
-{"name":"index","hostname":"Lenovo-PC","pid":5480,"level":30,"msg":"Express server started in development on port 3012. baseurl=undefined","time":"2017-10-25T17:41:09.499Z","v":0}
-{"name":"index","hostname":"Lenovo-PC","pid":5480,"level":30,"msg":"伺服器已啟動","time":"2017-10-25T17:41:09.499Z","v":0}
-{"name":"connector","hostname":"Lenovo-PC","pid":5480,"level":30,"msg":"[mongoose] Mongodb is opened","time":"2017-10-25T17:41:10.544Z","v":0}
-{"name":"index","hostname":"Lenovo-PC","pid":5480,"level":20,"locals":{"uid":"test:6023","displayName":"Roy mk2","flash":"成功登入"},"msg":"Print locals","time":"2017-10-25T18:10:14.059Z","v":0}
-{"name":"index","hostname":"Lenovo-PC","pid":8428,"level":30,"msg":"------------------------------","time":"2017-10-25T19:49:52.043Z","v":0}
-{"name":"index","hostname":"Lenovo-PC","pid":8428,"level":30,"msg":"Express server started in development on port 3002. baseurl=undefined","time":"2017-10-25T19:49:52.043Z","v":0}
-{"name":"index","hostname":"Lenovo-PC","pid":8428,"level":30,"msg":"伺服器已啟動","time":"2017-10-25T19:49:52.043Z","v":0}
-{"name":"connector","hostname":"Lenovo-PC","pid":8428,"level":30,"msg":"[mongoose] Mongodb is opened","time":"2017-10-25T19:49:53.222Z","v":0}
-{"name":"index","hostname":"Lenovo-PC","pid":3332,"level":30,"msg":"------------------------------","time":"2017-10-25T19:50:02.544Z","v":0}
-{"name":"index","hostname":"Lenovo-PC","pid":3332,"level":30,"msg":"Express server started in development on port 3002. baseurl=undefined","time":"2017-10-25T19:50:02.545Z","v":0}
-{"name":"index","hostname":"Lenovo-PC","pid":3332,"level":30,"msg":"伺服器已啟動","time":"2017-10-25T19:50:02.545Z","v":0}
-{"name":"connector","hostname":"Lenovo-PC","pid":3332,"level":30,"msg":"[mongoose] Mongodb is opened","time":"2017-10-25T19:50:03.537Z","v":0}
-{"name":"index","hostname":"Lenovo-PC","pid":3332,"level":20,"locals":{"flash":"請先登入"},"msg":"Print locals","time":"2017-10-25T20:07:30.222Z","v":0}
-{"name":"index","hostname":"Lenovo-PC","pid":3332,"level":20,"locals":{"flash":"請先登入"},"msg":"Print locals","time":"2017-10-25T20:07:34.961Z","v":0}
-{"name":"index","hostname":"Lenovo-PC","pid":5572,"level":30,"msg":"------------------------------","time":"2017-10-26T09:46:05.236Z","v":0}
-{"name":"index","hostname":"Lenovo-PC","pid":5572,"level":30,"msg":"Express server started in development on port 3002. baseurl=undefined","time":"2017-10-26T09:46:05.238Z","v":0}
-{"name":"index","hostname":"Lenovo-PC","pid":5572,"level":30,"msg":"伺服器已啟動","time":"2017-10-26T09:46:05.238Z","v":0}
-{"name":"connector","hostname":"Lenovo-PC","pid":5572,"level":30,"msg":"[mongoose] Mongodb is opened","time":"2017-10-26T09:46:07.195Z","v":0}
-{"name":"index","hostname":"Lenovo-PC","pid":5572,"level":20,"locals":{"flash":"請先登入"},"msg":"Print locals","time":"2017-10-26T10:33:16.944Z","v":0}
-{"name":"index","hostname":"Lenovo-PC","pid":5572,"level":20,"locals":{"flash":"請先登入"},"msg":"Print locals","time":"2017-10-26T10:33:56.468Z","v":0}
+{"name":"index","hostname":"your-pc","pid":7764,"level":0,"msg":"record#0","locals":{"user":"test:3310mk156","displayName":"master","flash":"Login ok"},"time":"2017-11-20T16:27:00.307Z"}
+{"name":"index","hostname":"your-pc","pid":7764,"level":10,"msg":"record#1","locals":{"user":"test:3311","displayName":"Manchester","flash":"Login ok"},"time":"2017-09-25T16:27:00.307Z"}
+{"name":"connector","hostname":"your-pc","pid":7764,"level":20,"msg":"record #2","locals":{"user":"test:3310","displayName":"master","flash":"Login ok"},"time":"2017-09-25T16:27:00.307Z"}
+{"name":"index","hostname":"your-pc","pid":5572,"level":20,"locals":{"flash":"請先登入"},"msg":"record#3, Print locals","time":"2017-10-26T10:33:56.468Z","v":0}
+{"name":"","hostname":"your-pc","pid":7764,"level":30,"msg":"Express server started in development on port 3002. baseurl=undefined","time":"2017-10-25T16:27:00.307Z","v":1}
+{"hostname":"your-pc","pid":7764,"level":30,"msg":"伺服器已啟動","time":"2017-10-25T16:27:00.308Z","v":0}
+{"name":"connector","hostname":"your-pc","pid":7764,"level":30,"msg":"[mongoose] Mongodb is opened","time":"2017-10-25T16:27:01.646Z","v":0}
+{"name":"connector","hostname":"your-pc","pid":7764,"level":50,"msg":"[error] mongoose connection does not exist.","time":"2017-10-25T16:27:03.646Z","v":0}
+{"name":"accesslog","hostname":"ip-192-168-55-66","pid":9330,"level":50,"error":"MongoError: failed to reconnect after 30 attempts with interval 1000 ms\n    at Connection.<anonymous> (/foo/bar/node/test-project/node_modules/mongodb-core/lib/connection/pool.js:318:15)\n    at emitTwo (events.js:106:13)\n    at Connection.emit (events.js:194:7)\n    at Socket.<anonymous> (/foo/bar/node/test-project/node_modules/mongodb-core/lib/connection/connection.js:187:49)\n    at Object.onceWrapper (events.js:293:19)\n    at emitOne (events.js:96:13)\n    at Socket.emit (events.js:191:7)\n    at emitErrorNT (net.js:1283:8)\n    at _combinedTickCallback (internal/process/next_tick.js:80:11)\n    at process._tickCallback (internal/process/next_tick.js:104:9)","my-error": "dna\nA customize error\n    at Somewhere (line1)\n    at somewhere1 (line5)","msg":"Error in daemon.buildPosts()","time":"2017-09-15T20:02:34.897Z","v":0}
+{"name":"index","hostname":"your-pc","pid":7764,"level":20,"locals":{"uid":"test:6023","displayName":"Roy","flash":"成功登入"},"msg":"Print locals","time":"2017-10-25T16:27:36.069Z","v":0}
+{"name":"index","hostname":"your-pc","pid":7764,"level":20,"locals":{"uid":"test:6023","displayName":"All new Roy","flash":"更新成功囉"},"msg":"Print locals","time":"2017-10-25T16:27:54.726Z","v":0}
+{"name":"index","hostname":"your-pc","pid":7764,"level":20,"locals":{"flash":"您已成功登出，歡迎再來。"},"msg":"Print locals","time":"2017-10-25T16:28:12.914Z","v":0}
+{"name":"index","hostname":"your-pc","pid":5480,"level":30,"msg":"------------------------------","time":"2017-10-25T17:41:09.499Z","v":0}
+{"name":"index","hostname":"your-pc","pid":5480,"level":30,"msg":"Express server started in development on port 3012. baseurl=undefined","time":"2017-10-25T17:41:09.499Z","v":0}
+{"name":"index","hostname":"your-pc","pid":5480,"level":30,"msg":"伺服器已啟動","time":"2017-10-25T17:41:09.499Z","v":0}
+{"name":"connector","hostname":"your-pc","pid":5480,"level":30,"msg":"[mongoose] Mongodb is opened","time":"2017-10-25T17:41:10.544Z","v":0}
+{"name":"index","hostname":"your-pc","pid":5480,"level":20,"locals":{"uid":"test:6023","displayName":"Roy mk2","flash":"成功登入"},"msg":"Print locals","time":"2017-10-25T18:10:14.059Z","v":0}
+{"name":"index","hostname":"your-pc","pid":8428,"level":30,"msg":"------------------------------","time":"2017-10-25T19:49:52.043Z","v":0}
+{"name":"index","hostname":"your-pc","pid":8428,"level":30,"msg":"Express server started in development on port 3002. baseurl=undefined","time":"2017-10-25T19:49:52.043Z","v":0}
+{"name":"index","hostname":"your-pc","pid":8428,"level":30,"msg":"伺服器已啟動","time":"2017-10-25T19:49:52.043Z","v":0}
+{"name":"connector","hostname":"your-pc","pid":8428,"level":30,"msg":"[mongoose] Mongodb is opened","time":"2017-10-25T19:49:53.222Z","v":0}
+{"name":"index","hostname":"your-pc","pid":3332,"level":30,"msg":"------------------------------","time":"2017-10-25T19:50:02.544Z","v":0}
+{"name":"index","hostname":"your-pc","pid":3332,"level":30,"msg":"Express server started in development on port 3002. baseurl=undefined","time":"2017-10-25T19:50:02.545Z","v":0}
+{"name":"index","hostname":"your-pc","pid":3332,"level":30,"msg":"伺服器已啟動","time":"2017-10-25T19:50:02.545Z","v":0}
+{"name":"connector","hostname":"your-pc","pid":3332,"level":30,"msg":"[mongoose] Mongodb is opened","time":"2017-10-25T19:50:03.537Z","v":0}
+{"name":"index","hostname":"your-pc","pid":3332,"level":20,"locals":{"flash":"請先登入"},"msg":"Print locals","time":"2017-10-25T20:07:30.222Z","v":0}
+{"name":"index","hostname":"your-pc","pid":3332,"level":20,"locals":{"flash":"請先登入"},"msg":"Print locals","time":"2017-10-25T20:07:34.961Z","v":0}
+{"name":"index","hostname":"your-pc","pid":5572,"level":30,"msg":"------------------------------","time":"2017-10-26T09:46:05.236Z","v":0}
+{"name":"index","hostname":"your-pc","pid":5572,"level":30,"msg":"Express server started in development on port 3002. baseurl=undefined","time":"2017-10-26T09:46:05.238Z","v":0}
+{"name":"connector","hostname":"your-pc","pid":5572,"level":30,"msg":"[mongoose] Mongodb is opened","time":"2017-10-26T09:46:07.195Z","v":0}
+
